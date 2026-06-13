@@ -1,0 +1,23 @@
+name: Sunrise Sunset Plans and Pricing
+description: Pricing plans for the Sunrise Sunset API service.
+url: https://sunrise-sunset.org/api
+plans:
+  - name: Free
+    description: The Sunrise Sunset API is completely free to use with no signup, API key, or payment required. Attribution to sunrise-sunset.org is required when using the API in any project.
+    price: 0
+    currency: USD
+    billingPeriod: none
+    features:
+      - Free access to all API endpoints
+      - No API key required
+      - No signup required
+      - Sunrise and sunset times
+      - Solar noon
+      - Day length
+      - Civil, nautical, and astronomical twilight times
+      - Support for any geographic location via lat/lng
+      - Historical and future date lookups
+      - Timezone support via tzid parameter
+      - JSONP support via callback parameter
+    rateLimit: Excessive or abusive usage is discouraged; no hard limit published
+    attribution: Required — users must display a link back to sunrise-sunset.org

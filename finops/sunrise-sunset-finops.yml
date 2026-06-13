@@ -1,0 +1,39 @@
+name: Sunrise Sunset FinOps
+description: Financial operations guidance for teams consuming the Sunrise Sunset API.
+url: https://sunrise-sunset.org/api
+costModel:
+  type: free
+  price: 0
+  currency: USD
+  notes: >
+    The Sunrise Sunset API is entirely free with no paid tiers, no usage-based
+    billing, and no account required. The only obligation is attribution — any
+    application or product using the API must display a visible link back to
+    sunrise-sunset.org.
+budgeting:
+  estimatedMonthlyCost: 0
+  notes: >
+    No direct cost to budget for. Teams should factor in any infrastructure
+    costs on their own side for caching responses, as the API has no SLA and
+    does not publish uptime guarantees. Caching sunrise/sunset values locally
+    (they change slowly) reduces dependency on external availability.
+risks:
+  - type: availability
+    description: >
+      No SLA is offered. Service is monitored via UptimeRobot at
+      https://apistatus.sunrise-sunset.org/ but no uptime guarantee is provided.
+  - type: rate-limiting
+    description: >
+      No published rate limits. High-volume or bursty traffic patterns may be
+      blocked without notice.
+  - type: compliance
+    description: >
+      Attribution is a contractual requirement per the terms of use. Failure
+      to attribute may constitute a terms-of-service violation.
+recommendations:
+  - Cache API responses client-side; sunrise/sunset values for a given
+    lat/lng/date are deterministic and can be pre-fetched or stored.
+  - Monitor the status page at https://apistatus.sunrise-sunset.org/ for
+    service incidents.
+  - Include visible attribution linking back to https://sunrise-sunset.org/
+    in any public-facing product.

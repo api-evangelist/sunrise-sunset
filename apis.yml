@@ -1,0 +1,66 @@
+aid: sunrise-sunset
+name: Sunrise Sunset
+description: >
+  Free REST API providing sunrise, sunset, solar noon, day length, and
+  civil, nautical, and astronomical twilight times for any geographic
+  location and date. No API key or account required; attribution to
+  sunrise-sunset.org is required. A single GET request to
+  https://api.sunrise-sunset.org/json with a latitude, longitude, and
+  optional date returns all solar time data for that location.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/sunrise-sunset/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+type: Index
+tags:
+  - Sunrise
+  - Sunset
+  - Solar
+  - Astronomy
+  - Twilight
+  - Weather
+  - Geolocation
+  - Free
+apis:
+  - aid: sunrise-sunset:sunrise-sunset-api
+    name: Sunrise Sunset API
+    description: >
+      REST API that returns sunrise, sunset, solar noon, day length, civil
+      twilight, nautical twilight, and astronomical twilight times for any
+      latitude/longitude coordinate and date. Responses are in JSON or JSONP.
+      No authentication required.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://sunrise-sunset.org/api
+    baseURL: https://api.sunrise-sunset.org
+    tags:
+      - Sunrise
+      - Sunset
+      - Solar
+      - Astronomy
+      - Twilight
+    properties:
+      - type: Documentation
+        url: https://sunrise-sunset.org/api
+common:
+  - type: Website
+    url: https://sunrise-sunset.org/
+  - type: Documentation
+    url: https://sunrise-sunset.org/api
+  - type: StatusPage
+    url: https://apistatus.sunrise-sunset.org/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/sunrise-sunset/refs/heads/main/plans/sunrise-sunset-plans-pricing.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/sunrise-sunset/refs/heads/main/rate-limits/sunrise-sunset-rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/sunrise-sunset/refs/heads/main/finops/sunrise-sunset-finops.yml
+  - type: TermsOfService
+    url: https://sunrise-sunset.org/terms
+  - type: PrivacyPolicy
+    url: https://sunrise-sunset.org/privacy
+  - type: Contact
+    url: https://sunrise-sunset.org/contact
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

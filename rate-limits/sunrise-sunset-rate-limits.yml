@@ -1,0 +1,22 @@
+name: Sunrise Sunset Rate Limits
+description: Rate limit information for the Sunrise Sunset API.
+url: https://sunrise-sunset.org/api
+notes: >
+  The Sunrise Sunset API does not publish specific numeric rate limits.
+  The API documentation asks users to avoid "excessive or abusive usage."
+  There is no API key or authentication mechanism, so limits are enforced
+  at the infrastructure level on a best-effort basis.
+rateLimits:
+  - tier: Free
+    requests: unspecified
+    window: unspecified
+    concurrent: unspecified
+    notes: >
+      No formal rate limit is documented. Users are expected to use the service
+      responsibly. Excessive or abusive usage may result in being blocked.
+      Attribution to sunrise-sunset.org is required in return for free access.
+enforcement:
+  method: best-effort infrastructure limiting
+  keyRequired: false
+  signupRequired: false
+  attributionRequired: true
