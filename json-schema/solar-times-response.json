@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/sunrise-sunset/main/json-schema/solar-times-response.json",
+  "title": "SolarTimesResponse",
+  "description": "Response from the Sunrise Sunset API containing solar event times for a given location and date.",
+  "type": "object",
+  "required": ["results", "status"],
+  "properties": {
+    "results": {
+      "$ref": "#/$defs/SolarTimes"
+    },
+    "status": {
+      "type": "string",
+      "description": "Status of the API request.",
+      "enum": ["OK", "INVALID_REQUEST", "INVALID_DATE", "UNKNOWN_ERROR", "INVALID_TZID"]
+    },
+    "tzid": {
+      "type": "string",
+      "description": "IANA timezone identifier used in the response. Present when tzid parameter was supplied or formatted=0.",
+      "example": "UTC"
+    }
+  },
+  "$defs": {
+    "SolarTimes": {
+      "title": "SolarTimes",
+      "description": "Solar event times for the requested location and date.",
+      "type": "object",
+      "properties": {
+        "sunrise": {
+          "description": "Time of sunrise. String in 12-hour format when formatted=1, ISO 8601 when formatted=0.",
+          "oneOf": [
+            { "type": "string" }
+          ]
+        },
+        "sunset": {
+          "description": "Time of sunset. String in 12-hour format when formatted=1, ISO 8601 when formatted=0.",
+          "oneOf": [
+            { "type": "string" }
+          ]
+        },
+        "solar_noon": {
+          "description": "Time of solar noon.",
+          "oneOf": [
+            { "type": "string" }
+          ]
+        },
+        "day_length": {
+          "description": "Length of day. HH:MM:SS string when formatted=1; total seconds as integer when formatted=0.",
+          "oneOf": [
+            { "type": "string" },
+            { "type": "integer" }
+          ]
+        },
+        "civil_twilight_begin": {
+          "description": "Start of civil twilight (sun 6 degrees below horizon).",
+          "oneOf": [
+            { "type": "string" }
+          ]
+        },
+        "civil_twilight_end": {
+          "description": "End of civil twilight (sun 6 degrees below horizon).",
+          "oneOf": [
+            { "type": "string" }
+          ]
+        },
+        "nautical_twilight_begin": {
+          "description": "Start of nautical twilight (sun 12 degrees below horizon).",
+          "oneOf": [
+            { "type": "string" }
+          ]
+        },
+        "nautical_twilight_end": {
+          "description": "End of nautical twilight (sun 12 degrees below horizon).",
+          "oneOf": [
+            { "type": "string" }
+          ]
+        },
+        "astronomical_twilight_begin": {
+          "description": "Start of astronomical twilight (sun 18 degrees below horizon).",
+          "oneOf": [
+            { "type": "string" }
+          ]
+        },
+        "astronomical_twilight_end": {
+          "description": "End of astronomical twilight (sun 18 degrees below horizon).",
+          "oneOf": [
+            { "type": "string" }
+          ]
+        }
+      }
+    }
+  }
+}

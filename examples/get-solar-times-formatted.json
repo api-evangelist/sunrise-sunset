@@ -1,0 +1,31 @@
+{
+  "summary": "Get solar times for Malaga, Spain (formatted output)",
+  "description": "Example request for Malaga, Spain using default formatted=1 output. Times returned in 12-hour clock format in UTC.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.sunrise-sunset.org/json",
+    "parameters": {
+      "lat": 36.7201600,
+      "lng": -4.4203400,
+      "date": "2024-06-15"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "results": {
+        "sunrise": "5:28:25 AM",
+        "sunset": "6:49:44 PM",
+        "solar_noon": "12:09:04 PM",
+        "day_length": "13:21:19",
+        "civil_twilight_begin": "5:05:39 AM",
+        "civil_twilight_end": "7:12:30 PM",
+        "nautical_twilight_begin": "4:38:23 AM",
+        "nautical_twilight_end": "7:39:46 PM",
+        "astronomical_twilight_begin": "4:11:03 AM",
+        "astronomical_twilight_end": "8:07:05 PM"
+      },
+      "status": "OK"
+    }
+  }
+}

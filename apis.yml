@@ -42,6 +42,8 @@ apis:
     properties:
       - type: Documentation
         url: https://sunrise-sunset.org/api
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/sunrise-sunset/refs/heads/main/openapi/openapi.yml
 common:
   - type: Website
     url: https://sunrise-sunset.org/

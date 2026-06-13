@@ -1,0 +1,94 @@
+vocabulary:
+  - term: sunrise
+    definition: >
+      The moment at which the upper edge of the sun appears above the horizon
+      in the morning. Times are in UTC by default or in the requested timezone
+      when tzid is specified.
+
+  - term: sunset
+    definition: >
+      The moment at which the upper edge of the sun disappears below the
+      horizon in the evening.
+
+  - term: solar_noon
+    definition: >
+      The moment when the sun reaches its highest point in the sky for the day
+      at the given location; the midpoint between sunrise and sunset.
+
+  - term: day_length
+    definition: >
+      The duration of daylight between sunrise and sunset. Returned as an
+      HH:MM:SS string when formatted=1, or total seconds as an integer when
+      formatted=0.
+
+  - term: civil_twilight_begin
+    definition: >
+      The start of civil twilight in the morning, when the sun is 6 degrees
+      below the horizon. Sufficient natural light for most outdoor activities
+      without artificial lighting.
+
+  - term: civil_twilight_end
+    definition: >
+      The end of civil twilight in the evening, when the sun is 6 degrees
+      below the horizon.
+
+  - term: nautical_twilight_begin
+    definition: >
+      The start of nautical twilight in the morning, when the sun is 12 degrees
+      below the horizon. Historically the threshold at which the horizon is no
+      longer visible for celestial navigation at sea.
+
+  - term: nautical_twilight_end
+    definition: >
+      The end of nautical twilight in the evening, when the sun is 12 degrees
+      below the horizon.
+
+  - term: astronomical_twilight_begin
+    definition: >
+      The start of astronomical twilight in the morning, when the sun is 18
+      degrees below the horizon. Before this point, the sky is fully dark and
+      suitable for astronomical observation.
+
+  - term: astronomical_twilight_end
+    definition: >
+      The end of astronomical twilight in the evening, when the sun is 18
+      degrees below the horizon.
+
+  - term: lat
+    definition: >
+      Latitude of the target location in decimal degrees. Required parameter.
+      Valid range: -90 (South Pole) to 90 (North Pole).
+
+  - term: lng
+    definition: >
+      Longitude of the target location in decimal degrees. Required parameter.
+      Valid range: -180 (West) to 180 (East).
+
+  - term: date
+    definition: >
+      The date for which to retrieve solar times. Accepts YYYY-MM-DD format.
+      Defaults to the current date if not provided.
+
+  - term: formatted
+    definition: >
+      Controls the output format of time values. When 1 (default), times are
+      returned as 12-hour clock strings. When 0, times are returned as ISO
+      8601 datetime strings and day_length is returned in seconds.
+
+  - term: tzid
+    definition: >
+      IANA timezone identifier (e.g., UTC, America/New_York, Europe/London).
+      When provided, all times in the response are expressed in the specified
+      timezone rather than UTC.
+
+  - term: callback
+    definition: >
+      JSONP callback function name. When provided, the JSON response is wrapped
+      in the specified function call, enabling cross-origin requests from
+      browsers.
+
+  - term: status
+    definition: >
+      Indicates the result of the API request. Possible values: OK (success),
+      INVALID_REQUEST (missing or invalid lat/lng), INVALID_DATE (unrecognized
+      date), UNKNOWN_ERROR (server error), INVALID_TZID (unrecognized timezone).

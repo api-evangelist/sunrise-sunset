@@ -1,0 +1,75 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "api": "https://sunrise-sunset.org/api#",
+
+    "SolarTimesResponse": "api:SolarTimesResponse",
+    "SolarTimes": "api:SolarTimes",
+
+    "results": {
+      "@id": "api:results",
+      "@type": "@id"
+    },
+    "status": {
+      "@id": "api:status",
+      "@type": "xsd:string"
+    },
+    "tzid": {
+      "@id": "api:tzid",
+      "@type": "xsd:string"
+    },
+    "sunrise": {
+      "@id": "schema:sunrise",
+      "@type": "xsd:string"
+    },
+    "sunset": {
+      "@id": "schema:sunset",
+      "@type": "xsd:string"
+    },
+    "solar_noon": {
+      "@id": "api:solar_noon",
+      "@type": "xsd:string"
+    },
+    "day_length": {
+      "@id": "api:day_length"
+    },
+    "civil_twilight_begin": {
+      "@id": "api:civil_twilight_begin",
+      "@type": "xsd:string"
+    },
+    "civil_twilight_end": {
+      "@id": "api:civil_twilight_end",
+      "@type": "xsd:string"
+    },
+    "nautical_twilight_begin": {
+      "@id": "api:nautical_twilight_begin",
+      "@type": "xsd:string"
+    },
+    "nautical_twilight_end": {
+      "@id": "api:nautical_twilight_end",
+      "@type": "xsd:string"
+    },
+    "astronomical_twilight_begin": {
+      "@id": "api:astronomical_twilight_begin",
+      "@type": "xsd:string"
+    },
+    "astronomical_twilight_end": {
+      "@id": "api:astronomical_twilight_end",
+      "@type": "xsd:string"
+    },
+    "lat": {
+      "@id": "schema:latitude",
+      "@type": "xsd:float"
+    },
+    "lng": {
+      "@id": "schema:longitude",
+      "@type": "xsd:float"
+    },
+    "date": {
+      "@id": "schema:date",
+      "@type": "xsd:date"
+    }
+  }
+}

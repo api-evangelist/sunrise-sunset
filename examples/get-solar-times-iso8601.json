@@ -1,0 +1,34 @@
+{
+  "summary": "Get solar times for New York City with ISO 8601 output and timezone",
+  "description": "Example request for New York City using formatted=0 to get ISO 8601 times and tzid to return times in Eastern Time.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.sunrise-sunset.org/json",
+    "parameters": {
+      "lat": 40.7128,
+      "lng": -74.0060,
+      "date": "2024-06-15",
+      "formatted": 0,
+      "tzid": "America/New_York"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "results": {
+        "sunrise": "2024-06-15T05:25:00-04:00",
+        "sunset": "2024-06-15T20:30:00-04:00",
+        "solar_noon": "2024-06-15T12:57:00-04:00",
+        "day_length": 54300,
+        "civil_twilight_begin": "2024-06-15T04:57:00-04:00",
+        "civil_twilight_end": "2024-06-15T20:58:00-04:00",
+        "nautical_twilight_begin": "2024-06-15T04:21:00-04:00",
+        "nautical_twilight_end": "2024-06-15T21:34:00-04:00",
+        "astronomical_twilight_begin": "2024-06-15T03:36:00-04:00",
+        "astronomical_twilight_end": "2024-06-15T22:19:00-04:00"
+      },
+      "status": "OK",
+      "tzid": "America/New_York"
+    }
+  }
+}
