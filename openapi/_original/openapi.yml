@@ -1,0 +1,243 @@
+openapi: 3.0.3
+info:
+  title: Sunrise Sunset API
+  description: >
+    Free REST API providing sunrise, sunset, solar noon, day length, and civil,
+    nautical, and astronomical twilight times for any geographic location and
+    date. No API key or account required. Attribution to sunrise-sunset.org is
+    required.
+  version: 1.0.0
+  contact:
+    url: https://sunrise-sunset.org/contact
+  termsOfService: https://sunrise-sunset.org/terms
+  license:
+    name: Attribution Required
+    url: https://sunrise-sunset.org/terms
+externalDocs:
+  description: Official API documentation
+  url: https://sunrise-sunset.org/api
+servers:
+  - url: https://api.sunrise-sunset.org
+    description: Production server
+paths:
+  /json:
+    get:
+      operationId: getSolarTimes
+      summary: Get solar times for a location and date
+      description: >
+        Returns sunrise, sunset, solar noon, day length, civil twilight,
+        nautical twilight, and astronomical twilight times for the specified
+        latitude/longitude coordinate and date. Responses are in JSON or JSONP.
+        Times are in UTC by default unless a timezone identifier is provided.
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          description: Latitude of the location in decimal degrees.
+          schema:
+            type: number
+            format: float
+            minimum: -90
+            maximum: 90
+          example: 36.7201600
+        - name: lng
+          in: query
+          required: true
+          description: Longitude of the location in decimal degrees.
+          schema:
+            type: number
+            format: float
+            minimum: -180
+            maximum: 180
+          example: -4.4203400
+        - name: date
+          in: query
+          required: false
+          description: >
+            Date for which to retrieve solar times. Accepts YYYY-MM-DD format
+            or relative values such as "today". Defaults to the current date.
+          schema:
+            type: string
+          example: "2024-06-15"
+        - name: callback
+          in: query
+          required: false
+          description: JSONP callback function name. When provided, the response is wrapped in the specified function call.
+          schema:
+            type: string
+        - name: formatted
+          in: query
+          required: false
+          description: >
+            When set to 0, times are returned as ISO 8601 strings (UTC).
+            When set to 1 (default), times are formatted as 12-hour clock strings.
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 1
+          example: 0
+        - name: tzid
+          in: query
+          required: false
+          description: >
+            IANA timezone identifier (e.g., UTC, America/New_York, Europe/London).
+            When provided, all times in the response are returned in the specified timezone.
+          schema:
+            type: string
+          example: "America/New_York"
+      responses:
+        '200':
+          description: Solar time data for the requested location and date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolarTimesResponse'
+              examples:
+                basic:
+                  summary: Basic response for Malaga, Spain
+                  value:
+                    results:
+                      sunrise: "5:28:25 AM"
+                      sunset: "6:49:44 PM"
+                      solar_noon: "12:09:04 PM"
+                      day_length: "13:21:19"
+                      civil_twilight_begin: "5:05:39 AM"
+                      civil_twilight_end: "7:12:30 PM"
+                      nautical_twilight_begin: "4:38:23 AM"
+                      nautical_twilight_end: "7:39:46 PM"
+                      astronomical_twilight_begin: "4:11:03 AM"
+                      astronomical_twilight_end: "8:07:05 PM"
+                    status: "OK"
+                iso8601:
+                  summary: Response with ISO 8601 times (formatted=0)
+                  value:
+                    results:
+                      sunrise: "2024-06-15T05:28:25+00:00"
+                      sunset: "2024-06-15T18:49:44+00:00"
+                      solar_noon: "2024-06-15T12:09:04+00:00"
+                      day_length: 48019
+                      civil_twilight_begin: "2024-06-15T05:05:39+00:00"
+                      civil_twilight_end: "2024-06-15T19:12:30+00:00"
+                      nautical_twilight_begin: "2024-06-15T04:38:23+00:00"
+                      nautical_twilight_end: "2024-06-15T19:39:46+00:00"
+                      astronomical_twilight_begin: "2024-06-15T04:11:03+00:00"
+                      astronomical_twilight_end: "2024-06-15T20:07:05+00:00"
+                    status: "OK"
+                    tzid: "UTC"
+components:
+  schemas:
+    SolarTimesResponse:
+      type: object
+      required:
+        - results
+        - status
+      properties:
+        results:
+          $ref: '#/components/schemas/SolarTimes'
+        status:
+          type: string
+          description: Status of the API request.
+          enum:
+            - OK
+            - INVALID_REQUEST
+            - INVALID_DATE
+            - UNKNOWN_ERROR
+            - INVALID_TZID
+          example: "OK"
+        tzid:
+          type: string
+          description: Timezone identifier used in the response. Present when tzid parameter was supplied or formatted=0.
+          example: "UTC"
+    SolarTimes:
+      type: object
+      description: Solar event times for the requested location and date.
+      properties:
+        sunrise:
+          description: Time of sunrise.
+          oneOf:
+            - type: string
+              description: Formatted time string (12-hour clock) when formatted=1.
+              example: "5:28:25 AM"
+            - type: string
+              format: date-time
+              description: ISO 8601 datetime string when formatted=0.
+              example: "2024-06-15T05:28:25+00:00"
+        sunset:
+          description: Time of sunset.
+          oneOf:
+            - type: string
+              description: Formatted time string (12-hour clock) when formatted=1.
+              example: "6:49:44 PM"
+            - type: string
+              format: date-time
+              description: ISO 8601 datetime string when formatted=0.
+              example: "2024-06-15T18:49:44+00:00"
+        solar_noon:
+          description: Time of solar noon.
+          oneOf:
+            - type: string
+              description: Formatted time string (12-hour clock) when formatted=1.
+              example: "12:09:04 PM"
+            - type: string
+              format: date-time
+              description: ISO 8601 datetime string when formatted=0.
+              example: "2024-06-15T12:09:04+00:00"
+        day_length:
+          description: >
+            Length of the day. When formatted=1, returned as HH:MM:SS string.
+            When formatted=0, returned as total seconds (integer).
+          oneOf:
+            - type: string
+              description: Duration in HH:MM:SS format when formatted=1.
+              example: "13:21:19"
+            - type: integer
+              description: Duration in seconds when formatted=0.
+              example: 48019
+        civil_twilight_begin:
+          description: Start of civil twilight (sun is 6 degrees below the horizon).
+          oneOf:
+            - type: string
+              example: "5:05:39 AM"
+            - type: string
+              format: date-time
+              example: "2024-06-15T05:05:39+00:00"
+        civil_twilight_end:
+          description: End of civil twilight (sun is 6 degrees below the horizon).
+          oneOf:
+            - type: string
+              example: "7:12:30 PM"
+            - type: string
+              format: date-time
+              example: "2024-06-15T19:12:30+00:00"
+        nautical_twilight_begin:
+          description: Start of nautical twilight (sun is 12 degrees below the horizon).
+          oneOf:
+            - type: string
+              example: "4:38:23 AM"
+            - type: string
+              format: date-time
+              example: "2024-06-15T04:38:23+00:00"
+        nautical_twilight_end:
+          description: End of nautical twilight (sun is 12 degrees below the horizon).
+          oneOf:
+            - type: string
+              example: "7:39:46 PM"
+            - type: string
+              format: date-time
+              example: "2024-06-15T19:39:46+00:00"
+        astronomical_twilight_begin:
+          description: Start of astronomical twilight (sun is 18 degrees below the horizon).
+          oneOf:
+            - type: string
+              example: "4:11:03 AM"
+            - type: string
+              format: date-time
+              example: "2024-06-15T04:11:03+00:00"
+        astronomical_twilight_end:
+          description: End of astronomical twilight (sun is 18 degrees below the horizon).
+          oneOf:
+            - type: string
+              example: "8:07:05 PM"
+            - type: string
+              format: date-time
+              example: "2024-06-15T20:07:05+00:00"

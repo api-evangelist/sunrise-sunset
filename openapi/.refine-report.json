@@ -1,0 +1,14 @@
+{
+  "provider": "sunrise-sunset",
+  "sources": [
+    "sunrise-sunset-json-api-openapi.yml"
+  ],
+  "outputs": [
+    "sunrise-sunset-json-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
