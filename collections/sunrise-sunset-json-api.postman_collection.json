@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "f0620462-56dc-4901-a92c-5fba59233ded",
+      "name": "Json",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e3bd5375-7336-41ab-93dd-ff9a2ce218ba",
+          "name": "Get solar times for a location and date",
+          "request": {
+            "name": "Get solar times for a location and date",
+            "description": {
+              "content": "Returns sunrise, sunset, solar noon, day length, civil twilight, nautical twilight, and astronomical twilight times for the specified latitude/longitude coordinate and date. Responses are in JSON or JSONP. Times are in UTC by default unless a timezone identifier is provided.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<float>",
+                  "description": "(Required) Latitude of the location in decimal degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<float>",
+                  "description": "(Required) Longitude of the location in decimal degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "Date for which to retrieve solar times. Accepts YYYY-MM-DD format or relative values such as \"today\". Defaults to the current date.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "JSONP callback function name. When provided, the response is wrapped in the specified function call."
+                },
+                {
+                  "disabled": false,
+                  "key": "formatted",
+                  "value": "1",
+                  "description": "When set to 0, times are returned as ISO 8601 strings (UTC). When set to 1 (default), times are formatted as 12-hour clock strings.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "tzid",
+                  "value": "<string>",
+                  "description": "IANA timezone identifier (e.g., UTC, America/New_York, Europe/London). When provided, all times in the response are returned in the specified timezone.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a7bd8e1-bb2e-4767-a71c-60999d3dabe6",
+              "name": "Solar time data for the requested location and date.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "36.72016"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "-4.42034"
+                    },
+                    {
+                      "key": "date",
+                      "value": "2024-06-15"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formatted",
+                      "value": "0"
+                    },
+                    {
+                      "key": "tzid",
+                      "value": "America/New_York"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": {\n    \"sunrise\": \"5:28:25 AM\",\n    \"sunset\": \"6:49:44 PM\",\n    \"solar_noon\": \"12:09:04 PM\",\n    \"day_length\": \"13:21:19\",\n    \"civil_twilight_begin\": \"5:05:39 AM\",\n    \"civil_twilight_end\": \"7:12:30 PM\",\n    \"nautical_twilight_begin\": \"4:38:23 AM\",\n    \"nautical_twilight_end\": \"7:39:46 PM\",\n    \"astronomical_twilight_begin\": \"4:11:03 AM\",\n    \"astronomical_twilight_end\": \"8:07:05 PM\"\n  },\n  \"status\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sunrise-sunset.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5c681ee8-d706-44d7-91b2-a2b28604690f",
+    "name": "Sunrise Sunset Json API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Free REST API providing sunrise, sunset, solar noon, day length, and civil, nautical, and astronomical twilight times for any geographic location and date. No API key or account required. Attribution to sunrise-sunset.org is required.\n",
+      "type": "text/plain"
+    }
+  }
+}

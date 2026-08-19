@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sunrise Sunset Json API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Json",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get solar times for a location and date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sunrise-sunset.org/json",
+            "params": [
+              {
+                "name": "lat",
+                "value": "36.72016",
+                "type": "query",
+                "description": "Latitude of the location in decimal degrees."
+              },
+              {
+                "name": "lng",
+                "value": "-4.42034",
+                "type": "query",
+                "description": "Longitude of the location in decimal degrees."
+              },
+              {
+                "name": "date",
+                "value": "2024-06-15",
+                "type": "query",
+                "description": "Date for which to retrieve solar times. Accepts YYYY-MM-DD format or relative values such as \"today\". Defaults to the current date.\n"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP callback function name. When provided, the response is wrapped in the specified function call."
+              },
+              {
+                "name": "formatted",
+                "value": "0",
+                "type": "query",
+                "description": "When set to 0, times are returned as ISO 8601 strings (UTC). When set to 1 (default), times are formatted as 12-hour clock strings.\n"
+              },
+              {
+                "name": "tzid",
+                "value": "America/New_York",
+                "type": "query",
+                "description": "IANA timezone identifier (e.g., UTC, America/New_York, Europe/London). When provided, all times in the response are returned in the specified timezone.\n"
+              }
+            ]
+          },
+          "docs": "Returns sunrise, sunset, solar noon, day length, civil twilight, nautical twilight, and astronomical twilight times for the specified latitude/longitude coordinate and date. Responses are in JSON or JSONP. Times are in UTC by default unless a timezone identifier is provided.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
