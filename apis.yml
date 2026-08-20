@@ -41,6 +41,8 @@ apis:
   humanURL: https://sunrise-sunset.org/api
   baseURL: https://api.sunrise-sunset.org
   tags:
+  - JSON
+  tags_raw:
   - Json
   properties:
   - type: OpenAPI
