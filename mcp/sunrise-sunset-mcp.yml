@@ -1,0 +1,23 @@
+generated: '2026-09-11'
+method: probed
+source: https://api.sunrise-sunset.org/mcp
+status: published
+server:
+  name: sunrise-sunset
+  transport: http
+  url: https://api.sunrise-sunset.org/mcp
+deployment:
+  mode: remote
+  endpoint: https://api.sunrise-sunset.org/mcp
+  verified: probed
+  probe: live
+  checked: '2026-09-11'
+  source: docs-check 2026-09-11 (endpoint found in the provider's own documentation, then probed)
+tools_count: 2
+tools:
+- name: get_sun_times
+  description: ''
+- name: get_sun_times_range
+  description: ''
+tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
+authorship: provider
