@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Sunrise Sunset Json API
-  description: 'Free REST API providing sunrise, sunset, solar noon, day length, and civil, nautical, and astronomical twilight times for any geographic location and date. No API key or account required. Attribution to sunrise-sunset.org is required.
-
-    '
+  title: Sunrise Sunset JSON API
+  description: Free REST API providing sunrise, sunset, solar noon, day length, and civil, nautical, and astronomical twilight times for any geographic location and date. No API key or account required. Attribution to sunrise-sunset.org is required.
   version: 1.0.0
   contact:
     url: https://sunrise-sunset.org/contact
@@ -21,9 +19,7 @@ paths:
     get:
       operationId: getSolarTimes
       summary: Get solar times for a location and date
-      description: 'Returns sunrise, sunset, solar noon, day length, civil twilight, nautical twilight, and astronomical twilight times for the specified latitude/longitude coordinate and date. Responses are in JSON or JSONP. Times are in UTC by default unless a timezone identifier is provided.
-
-        '
+      description: Returns sunrise, sunset, solar noon, day length, civil twilight, nautical twilight, and astronomical twilight times for the specified latitude/longitude coordinate and date. Responses are in JSON or JSONP. Times are in UTC by default unless a timezone identifier is provided.
       parameters:
       - name: lat
         in: query
