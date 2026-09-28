@@ -16,8 +16,14 @@ deployment:
 tools_count: 2
 tools:
 - name: get_sun_times
-  description: ''
+  description: Sunrise, sunset, solar noon, day length, civil/nautical/astronomical twilight, dawn/dusk,
+    first/last light, golden hour, blue hour, sunrise/sunset azimuth, solar noon altitude, moonrise/moonset,
+    moon phase and illumination for any coordinat
 - name: get_sun_times_range
-  description: ''
+  description: Same per-day data as get_sun_times but for an inclusive date range (up to 366 days) in
+    a single call. Use this instead of repeated get_sun_times calls when you need several consecutive
+    days. The days array may contain fewer entries than the
 tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
