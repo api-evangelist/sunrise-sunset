@@ -121,6 +121,28 @@ paths:
       - Json
 components:
   schemas:
+    SolarTimesResponse:
+      type: object
+      required:
+      - results
+      - status
+      properties:
+        results:
+          $ref: '#/components/schemas/SolarTimes'
+        status:
+          type: string
+          description: Status of the API request.
+          enum:
+          - OK
+          - INVALID_REQUEST
+          - INVALID_DATE
+          - UNKNOWN_ERROR
+          - INVALID_TZID
+          example: OK
+        tzid:
+          type: string
+          description: Timezone identifier used in the response. Present when tzid parameter was supplied or formatted=0.
+          example: UTC
     SolarTimes:
       type: object
       description: Solar event times for the requested location and date.
@@ -214,28 +236,6 @@ components:
           - type: string
             format: date-time
             example: '2024-06-15T20:07:05+00:00'
-    SolarTimesResponse:
-      type: object
-      required:
-      - results
-      - status
-      properties:
-        results:
-          $ref: '#/components/schemas/SolarTimes'
-        status:
-          type: string
-          description: Status of the API request.
-          enum:
-          - OK
-          - INVALID_REQUEST
-          - INVALID_DATE
-          - UNKNOWN_ERROR
-          - INVALID_TZID
-          example: OK
-        tzid:
-          type: string
-          description: Timezone identifier used in the response. Present when tzid parameter was supplied or formatted=0.
-          example: UTC
 externalDocs:
   description: Official API documentation
   url: https://sunrise-sunset.org/api
