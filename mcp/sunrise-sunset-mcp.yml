@@ -18,11 +18,15 @@ tools:
 - name: get_sun_times
   description: Sunrise, sunset, solar noon, day length, civil/nautical/astronomical twilight, dawn/dusk,
     first/last light, golden hour, blue hour, sunrise/sunset azimuth, solar noon altitude, moonrise/moonset,
-    moon phase and illumination for any coordinat
+    moon phase and illumination for any coordinates on Earth and any date. Times are ISO 8601 in the local
+    timezone of the location. Polar day/night handled via sun_status (normal | midnight_sun | polar_night);
+    events that do not occur are null.
 - name: get_sun_times_range
-  description: Same per-day data as get_sun_times but for an inclusive date range (up to 366 days) in
+  description: 'Same per-day data as get_sun_times but for an inclusive date range (up to 366 days) in
     a single call. Use this instead of repeated get_sun_times calls when you need several consecutive
-    days. The days array may contain fewer entries than the
+    days. The days array may contain fewer entries than the number of dates requested: calendar days that
+    never existed in that timezone (Samoa skipped 30 December 2011 when it crossed the date line) are
+    left out, so read each entry''s date field instead of assuming one per requested date.'
 tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
 descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
