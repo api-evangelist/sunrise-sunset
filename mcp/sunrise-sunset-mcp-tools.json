@@ -1,0 +1,795 @@
+{
+  "endpoint": "https://api.sunrise-sunset.org/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "sunrise-sunset",
+    "title": "Sunrise-Sunset.org",
+    "version": "1.1.0"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "get_sun_times",
+        "title": "Sunrise & sunset times",
+        "description": "Sunrise, sunset, solar noon, day length, civil/nautical/astronomical twilight, dawn/dusk, first/last light, golden hour, blue hour, sunrise/sunset azimuth, solar noon altitude, moonrise/moonset, moon phase and illumination for any coordinates on Earth and any date. Times are ISO 8601 in the local timezone of the location. Polar day/night handled via sun_status (normal | midnight_sun | polar_night); events that do not occur are null.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90,
+              "description": "Latitude in decimal degrees."
+            },
+            "lng": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180,
+              "description": "Longitude in decimal degrees."
+            },
+            "tz": {
+              "type": "string",
+              "description": "IANA timezone like 'Europe/Madrid'. Omit to use the local timezone of the coordinates, resolved automatically (recommended)."
+            },
+            "date": {
+              "type": "string",
+              "description": "'today' (default), 'tomorrow' or YYYY-MM-DD. Relative dates resolve in the local timezone of the coordinates."
+            }
+          },
+          "required": [
+            "lat",
+            "lng"
+          ]
+        },
+        "annotations": {
+          "title": "Sunrise & sunset times",
+          "readOnlyHint": true,
+          "openWorldHint": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "description": "Local date, YYYY-MM-DD."
+            },
+            "tzid": {
+              "type": "string",
+              "description": "IANA timezone used."
+            },
+            "utc_offset": {
+              "type": "string",
+              "description": "UTC offset of the location at local noon, like +02:00."
+            },
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            },
+            "sunrise": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Sunrise, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "sunset": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Sunset, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "solar_noon": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Solar noon, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "day_length": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "description": "Seconds of daylight: 86400 with midnight sun, 0 with polar night, null on a day with only one of sunrise/sunset."
+            },
+            "sun_status": {
+              "type": "string",
+              "enum": [
+                "normal",
+                "midnight_sun",
+                "polar_night"
+              ]
+            },
+            "civil_twilight_begin": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Start of civil twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "civil_twilight_end": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "End of civil twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "nautical_twilight_begin": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Start of nautical twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "nautical_twilight_end": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "End of nautical twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "astronomical_twilight_begin": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Start of astronomical twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "astronomical_twilight_end": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "End of astronomical twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "dawn": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Dawn (start of civil twilight), ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "dusk": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Dusk (end of civil twilight), ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "first_light": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "First light (start of astronomical twilight), ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "last_light": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Last light (end of astronomical twilight), ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "golden_hour": {
+              "type": "object",
+              "properties": {
+                "morning": {
+                  "type": "object",
+                  "properties": {
+                    "begin": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Start of the morning golden hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                    },
+                    "end": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "End of the morning golden hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                    }
+                  },
+                  "required": [
+                    "begin",
+                    "end"
+                  ]
+                },
+                "evening": {
+                  "type": "object",
+                  "properties": {
+                    "begin": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Start of the evening golden hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                    },
+                    "end": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "End of the evening golden hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                    }
+                  },
+                  "required": [
+                    "begin",
+                    "end"
+                  ]
+                }
+              },
+              "required": [
+                "morning",
+                "evening"
+              ]
+            },
+            "blue_hour": {
+              "type": "object",
+              "properties": {
+                "morning": {
+                  "type": "object",
+                  "properties": {
+                    "begin": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Start of the morning blue hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                    },
+                    "end": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "End of the morning blue hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                    }
+                  },
+                  "required": [
+                    "begin",
+                    "end"
+                  ]
+                },
+                "evening": {
+                  "type": "object",
+                  "properties": {
+                    "begin": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Start of the evening blue hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                    },
+                    "end": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "End of the evening blue hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                    }
+                  },
+                  "required": [
+                    "begin",
+                    "end"
+                  ]
+                }
+              },
+              "required": [
+                "morning",
+                "evening"
+              ]
+            },
+            "solar_position": {
+              "type": "object",
+              "properties": {
+                "sunrise_azimuth": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "Azimuth of the sun at sunrise in degrees; null if the event does not happen."
+                },
+                "sunset_azimuth": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "Azimuth of the sun at sunset in degrees; null if the event does not happen."
+                },
+                "solar_noon_azimuth": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "Azimuth of the sun at solar noon in degrees; null if the event does not happen."
+                },
+                "solar_noon_altitude": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "Altitude of the sun at solar noon in degrees; null if the event does not happen."
+                }
+              },
+              "required": [
+                "sunrise_azimuth",
+                "sunset_azimuth",
+                "solar_noon_azimuth",
+                "solar_noon_altitude"
+              ]
+            },
+            "moonrise": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Moonrise, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "moonset": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Moonset, ISO 8601 with the local UTC offset; null if it does not happen that day."
+            },
+            "moon_phase": {
+              "type": "string",
+              "enum": [
+                "New Moon",
+                "Waxing Crescent",
+                "First Quarter",
+                "Waxing Gibbous",
+                "Full Moon",
+                "Waning Gibbous",
+                "Last Quarter",
+                "Waning Crescent"
+              ],
+              "description": "Moon phase at local noon."
+            },
+            "moon_illumination": {
+              "type": "number",
+              "description": "Illuminated fraction of the moon at local noon, in percent (0-100)."
+            },
+            "attribution": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "date",
+            "tzid",
+            "utc_offset",
+            "lat",
+            "lng",
+            "sunrise",
+            "sunset",
+            "solar_noon",
+            "day_length",
+            "sun_status",
+            "civil_twilight_begin",
+            "civil_twilight_end",
+            "nautical_twilight_begin",
+            "nautical_twilight_end",
+            "astronomical_twilight_begin",
+            "astronomical_twilight_end",
+            "dawn",
+            "dusk",
+            "first_light",
+            "last_light",
+            "golden_hour",
+            "blue_hour",
+            "solar_position",
+            "moonrise",
+            "moonset",
+            "moon_phase",
+            "moon_illumination"
+          ]
+        }
+      },
+      {
+        "name": "get_sun_times_range",
+        "title": "Sunrise & sunset times for a date range",
+        "description": "Same per-day data as get_sun_times but for an inclusive date range (up to 366 days) in a single call. Use this instead of repeated get_sun_times calls when you need several consecutive days. The days array may contain fewer entries than the number of dates requested: calendar days that never existed in that timezone (Samoa skipped 30 December 2011 when it crossed the date line) are left out, so read each entry's date field instead of assuming one per requested date.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90,
+              "description": "Latitude in decimal degrees."
+            },
+            "lng": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180,
+              "description": "Longitude in decimal degrees."
+            },
+            "tz": {
+              "type": "string",
+              "description": "IANA timezone like 'Europe/Madrid'. Omit to use the local timezone of the coordinates, resolved automatically (recommended)."
+            },
+            "date_start": {
+              "type": "string",
+              "description": "First day, YYYY-MM-DD."
+            },
+            "date_end": {
+              "type": "string",
+              "description": "Last day (inclusive), YYYY-MM-DD. The range covers at most 366 days counting both ends, so date_end can be at most 365 days after date_start."
+            }
+          },
+          "required": [
+            "lat",
+            "lng",
+            "date_start",
+            "date_end"
+          ]
+        },
+        "annotations": {
+          "title": "Sunrise & sunset times for a date range",
+          "readOnlyHint": true,
+          "openWorldHint": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "tzid": {
+              "type": "string",
+              "description": "IANA timezone used."
+            },
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            },
+            "days": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "description": "Local date, YYYY-MM-DD."
+                  },
+                  "utc_offset": {
+                    "type": "string",
+                    "description": "UTC offset of the location at local noon, like +02:00."
+                  },
+                  "sunrise": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Sunrise, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "sunset": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Sunset, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "solar_noon": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Solar noon, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "day_length": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "description": "Seconds of daylight: 86400 with midnight sun, 0 with polar night, null on a day with only one of sunrise/sunset."
+                  },
+                  "sun_status": {
+                    "type": "string",
+                    "enum": [
+                      "normal",
+                      "midnight_sun",
+                      "polar_night"
+                    ]
+                  },
+                  "civil_twilight_begin": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Start of civil twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "civil_twilight_end": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End of civil twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "nautical_twilight_begin": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Start of nautical twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "nautical_twilight_end": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End of nautical twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "astronomical_twilight_begin": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Start of astronomical twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "astronomical_twilight_end": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End of astronomical twilight, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "dawn": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Dawn (start of civil twilight), ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "dusk": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Dusk (end of civil twilight), ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "first_light": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "First light (start of astronomical twilight), ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "last_light": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Last light (end of astronomical twilight), ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "golden_hour": {
+                    "type": "object",
+                    "properties": {
+                      "morning": {
+                        "type": "object",
+                        "properties": {
+                          "begin": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Start of the morning golden hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                          },
+                          "end": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "End of the morning golden hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                          }
+                        },
+                        "required": [
+                          "begin",
+                          "end"
+                        ]
+                      },
+                      "evening": {
+                        "type": "object",
+                        "properties": {
+                          "begin": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Start of the evening golden hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                          },
+                          "end": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "End of the evening golden hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                          }
+                        },
+                        "required": [
+                          "begin",
+                          "end"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "morning",
+                      "evening"
+                    ]
+                  },
+                  "blue_hour": {
+                    "type": "object",
+                    "properties": {
+                      "morning": {
+                        "type": "object",
+                        "properties": {
+                          "begin": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Start of the morning blue hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                          },
+                          "end": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "End of the morning blue hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                          }
+                        },
+                        "required": [
+                          "begin",
+                          "end"
+                        ]
+                      },
+                      "evening": {
+                        "type": "object",
+                        "properties": {
+                          "begin": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Start of the evening blue hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                          },
+                          "end": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "End of the evening blue hour, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                          }
+                        },
+                        "required": [
+                          "begin",
+                          "end"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "morning",
+                      "evening"
+                    ]
+                  },
+                  "solar_position": {
+                    "type": "object",
+                    "properties": {
+                      "sunrise_azimuth": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Azimuth of the sun at sunrise in degrees; null if the event does not happen."
+                      },
+                      "sunset_azimuth": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Azimuth of the sun at sunset in degrees; null if the event does not happen."
+                      },
+                      "solar_noon_azimuth": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Azimuth of the sun at solar noon in degrees; null if the event does not happen."
+                      },
+                      "solar_noon_altitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Altitude of the sun at solar noon in degrees; null if the event does not happen."
+                      }
+                    },
+                    "required": [
+                      "sunrise_azimuth",
+                      "sunset_azimuth",
+                      "solar_noon_azimuth",
+                      "solar_noon_altitude"
+                    ]
+                  },
+                  "moonrise": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Moonrise, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "moonset": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Moonset, ISO 8601 with the local UTC offset; null if it does not happen that day."
+                  },
+                  "moon_phase": {
+                    "type": "string",
+                    "enum": [
+                      "New Moon",
+                      "Waxing Crescent",
+                      "First Quarter",
+                      "Waxing Gibbous",
+                      "Full Moon",
+                      "Waning Gibbous",
+                      "Last Quarter",
+                      "Waning Crescent"
+                    ],
+                    "description": "Moon phase at local noon."
+                  },
+                  "moon_illumination": {
+                    "type": "number",
+                    "description": "Illuminated fraction of the moon at local noon, in percent (0-100)."
+                  }
+                },
+                "required": [
+                  "date",
+                  "utc_offset",
+                  "sunrise",
+                  "sunset",
+                  "solar_noon",
+                  "day_length",
+                  "sun_status",
+                  "civil_twilight_begin",
+                  "civil_twilight_end",
+                  "nautical_twilight_begin",
+                  "nautical_twilight_end",
+                  "astronomical_twilight_begin",
+                  "astronomical_twilight_end",
+                  "dawn",
+                  "dusk",
+                  "first_light",
+                  "last_light",
+                  "golden_hour",
+                  "blue_hour",
+                  "solar_position",
+                  "moonrise",
+                  "moonset",
+                  "moon_phase",
+                  "moon_illumination"
+                ]
+              },
+              "description": "One entry per local day that exists in that timezone, in order; match entries by their date field."
+            },
+            "attribution": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "tzid",
+            "lat",
+            "lng",
+            "days"
+          ]
+        }
+      }
+    ]
+  }
+}
